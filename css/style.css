@@ -318,7 +318,6 @@ h2 {
 .fh5co-bg-dark .fh5co-heading h2 {
   color: #fff !important;
 }
-
 .info {
   margin: 0;
   padding: 0;
@@ -336,7 +335,6 @@ h2 {
   width: 30px;
   height: 30px;
 }
-
 .box-icon {
   align-items: center;
   display: flex;
@@ -344,13 +342,11 @@ h2 {
 
 }
 @media screen and (max-width: 768px) {
-
   .box-icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
   .box-icon svg {
   width: 20px;
   height: 20px;
@@ -359,10 +355,6 @@ h2 {
     margin-bottom: 2px;
   }
 }
-
-
-
-
 .info li {
   width: 100%;
   float: left;
