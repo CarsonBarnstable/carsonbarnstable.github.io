@@ -291,7 +291,7 @@ h2 {
 #fh5co-blog,
 #fh5co-pricing,
 #fh5co-contact {
-  padding: 3em 0;
+  padding: 5em 0;
   clear: both;
 }
 @media screen and (max-width: 768px) {
@@ -303,7 +303,7 @@ h2 {
   #fh5co-blog,
   #fh5co-pricing,
   #fh5co-contact {
-    padding: 3em 0;
+    padding: 2em 0;
   }
 }
 
