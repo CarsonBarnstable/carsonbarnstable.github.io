@@ -3441,9 +3441,12 @@ tbody.collapse.in {
   display: block;
   padding: 10px 15px;
 }
-.nav > li > a:hover, .nav > li > a:focus {
+.nav > li > a:hover {
   text-decoration: none;
   background-color: #eeeeee;
+}
+.nav > li > a:focus {
+  text-decoration: none;
 }
 .nav > li.disabled > a {
   color: #777777;
@@ -3454,8 +3457,11 @@ tbody.collapse.in {
   background-color: transparent;
   cursor: not-allowed;
 }
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+.nav .open > a, .nav .open > a:hover {
   background-color: #eeeeee;
+  border-color: #337ab7;
+}
+.nav .open > a:focus {
   border-color: #337ab7;
 }
 .nav .nav-divider {
