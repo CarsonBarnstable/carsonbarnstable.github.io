@@ -155,10 +155,50 @@
 				<div class="col-md-12">
 
                     <h3>Project</h3>
-                    <p>As the final project for the  CMPUT415 Course, we were tasked with creating a compiler for the Gazprea programming language. <em>Note that this was a group assignment, so all aspects of this project were created collaboratively in groups of four.</em></p>
+                    <p>As the final assignment for the  CMPUT415 Course, we were tasked with creating a compiler for the Gazprea programming language. <em>Note that this was a group assignment, so all aspects of this project were created collaboratively in groups of four.</em></p>
                     <p>Our group's compiler is built in C++, using <a href="https://www.antlr.org/" target="_blank">ANTLR4</a> to generate an LL(*) parser. Once the language is parsed, an Abstract Syntax Tree is built (that could be fully visualized with <a href="https://graphviz.org/" target="_blank">Graphviz</a> <em>(see below)</em> anytime throughout the compilation pipeline), and used <a href="https://mlir.llvm.org/docs/Interfaces/" target="_blank">MLIR's C++ Interface/API</a> to output <a href="https://mlir.llvm.org/docs/BytecodeFormat/" target="_blank">MLIR Bytecode</a>. This was then lowered to a raw <a href="https://mlir.llvm.org/docs/TargetLLVMIR/" target="_blank">LLVM Intermediate Representation (IR)</a>, which was them compiled to object files with <code>llc</code> (the <a href="https://llvm.org/docs/CommandGuide/llc.html" target="_blank"><strong>LL</strong>VM <strong>C</strong>ompiler</a>).</p>
                     <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p>
                     
+                    <div class="row col-md-12">
+                        <a href="/images/gazprea-example-graphviz.png"><img style="width:100%;" src="/images/gazprea-example-graphviz.png"/></a>
+                        <span>Example Graphviz output for example program above<br><em>(Click to view Full Quality)</em></span>
+                        <p/>
+                    </div>                    
+
+                </div>
+            </div>
+		</div>
+
+		<div class="container animate-box">
+			<div class="row">
+				<div class="col-md-12">
+
+                    <h3>Lessons Learned</h3>
+
+                    <ul>
+                        <li>When projects involve others, exponentailly more work must be put into proper planning and organization</li>
+                        <ul>
+                            <li>Planning ahead is almost always easier than trying to reconcile issues after the fact</li>
+                            <li><em>Fully</em> utilizing a proper issue tracker (e.g. GitHub Issues) massively improves speed/ease of communication</li>
+                            <li>Typically, a voice call (as opposed to text-based messaging) is easier, quicker, and more productive</li>
+                        </ul>
+                        <li>C++ has massively powerful OOP capabilities, but must be managed carefully</li>
+                        <ul>
+                            <li>Regarding file/directory organization, logical organization structures & file naming goes a long way</li>
+                            <li>When builfing class structures, having a carefully planned class hierarchy is a must</li>
+                        </ul>
+                        <li>Making a good/complete compiler is hard</li>
+                        <ul>
+                            <li>Figuring out the 'normal case' is easy, catching errors & handling edge/corner cases is hard</li>
+                        </ul>                        
+                        <li>Unit testing (and test-driven development (TDD)) is worth it, especially with good CI/CD capabilities</li>
+                        <ul>
+                            <li>We were able to have a dedicated CI/CD server, which always ensured changes were not counter-productive</li>
+                            <li>Having pre-written tests to "work towards" can be useful for knowing how changes need to be made</li>
+                        </ul>
+
+                    </ul>
+
                     <!--
                     <div class="row">
                         <div class="col-md-4">
@@ -175,44 +215,6 @@
                         </div>
                     </div>
                     -->
-                    
-                    <div class="row col-md-12">
-                        <a href="/images/gazprea-example-graphviz.png" target="_blank">
-                            <img style="width:100%;" src="/images/gazprea-example-graphviz.png"/>
-                        </a>
-                        <span>Example Graphviz output for example program above<br><em>(Click to view Full Quality)</em></span>
-                        <p/>
-                    </div>                    
-
-                </div>
-            </div>
-		</div>
-
-		<div class="container animate-box">
-			<div class="row">
-				<div class="col-md-12">
-
-                    <h3>Learning Outcomes</h3>
-                    <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                        <li>Aliquam tincidunt mauris eu risus.</li>
-                        <li>Vestibulum auctor dapibus neque.</li>
-                        <li>Nunc dignissim risus id metus.</li>
-                        <li>Cras ornare tristique elit.</li>
-                        <li>Vivamus vestibulum ntulla nec ante.</li>
-                        <li>Praesent placerat risus quis eros.</li>
-                        <li>Fusce pellentesque suscipit nibh.</li>
-                        <li>Integer vitae libero ac risus egestas placerat.</li>
-                        <li>Vestibulum commodo felis quis tortor.</li>
-                        <li>Ut aliquam sollicitudin leo.</li>
-                        <li>Cras iaculis ultricies nulla.</li>
-
-                        <!-- <li>No matter how experienced a team is, large software engineering projects need a (proportionally) large amount of planning. Spending time early on to plan and distribute work will pay off well.</li>
-                        <li>I had the honour to work with some very smart individuals on my team. However, I noticed that a common anti-pattern the team kept falling into was having the smart people do everything.</li>
-                        <li>A working compiler is not hard, a perfect compiler is impossible. There were so many bugs and edge cases that we didn't know how far to go down certain paths.</li>
-                        <li>C++ is a good language if you enforce coding practices. Clang tidy is your friend.</li>
-                        <li>UNIT TESTING WORKS. It's not for ensuring a basic function works, it's for ensuring later refactoring or additional code does not break your code. I use TDD everywhere now.</li> -->
-                    </ul>
 
                 </div>
             </div>
