@@ -29,8 +29,8 @@
 
 code {
   font-family: Consolas,"courier new";
-  color: #111111;
-  background-color: #f1f1f1;
+  color: #1e2022;
+  background-color: #1e202211;
   font-size: 105%;
 }
 
@@ -77,19 +77,37 @@ body {
 }
 
 a {
-  color: #2873c8;
+  color: #35a7ff;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
 a:hover, a:active, a:focus {
-  color: #535960;
+  color: #ff5964;
+  outline: none;
+  text-decoration: none;
+}
+
+a img {
+  border: 2px solid #35a7ff33;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+a img:hover, a img:active, a img:focus {
+  border: 2px solid #ff596488;
   outline: none;
   text-decoration: none;
 }
 
 p {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+ul {
+  margin-bottom: 20px;
+}
+li {
+  margin-bottom: 2px;
 }
 
 h1, h2, h3, h4, h5, h6, figure {
@@ -375,13 +393,14 @@ h2 {
   display: inline-block;
   float: left;
   color: #000;
-  font-family: "Inter", sans-serif;
+  font-family: "Space Mono", Arial, serif;
   font-weight: 600;
 }
 .info li .second-block {
   width: 67%;
   display: inline-block;
   color: rgba(0, 0, 0, 0.5);
+  font-weight: 300;
 }
 
 .fh5co-social-icons {
