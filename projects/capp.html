@@ -101,6 +101,7 @@
                     <h2>CAPP (Carson's App)</h2>
                     <h4>[Summer 2024] A comprehensive interface for Shopify backorder/stock management</h4>
                     <h5><strong>Source:</strong> Closed Source</h5>
+					<h5>This application was built during a summer internship for <a href="https://all-startelescope.com/" target="_blank">All-Star Telescope Canada</a>.</h5>
                     
                     <div>
 
@@ -125,7 +126,7 @@
 						</svg>
 
 					</div>
-                    <p/>
+					<p/>
 
                 </div>
             </div>
@@ -136,17 +137,16 @@
 			<div class="row">
 				<div class="col-md-12">
 
-                    <h3>Background</h3>
-					<p>TODO</p>
-                    <!-- <p>Developed originally at IBM in Markham, ON for fast finance/business operations, the Gazprea programming language was adapted to be used as a project for the <strong>CMPUT415 Course at the University of Alberta</strong>. This course serves as a sort of capstone course, integrating various computing science skills including software design, programming, data structures, algorithms, theoretical computing, documentation, and even machine architecture. The specification for the version of gazprea used for the Fall 2024 semester can be <a href="/files/Gazprea-Specification.pdf" target="_blank">found here</a>.</a></p>
-                    <p>Gazprea is built to be a quick, easy-to-write scripting language, but is compiled for maximum computing speed & efficiency. It uses four underlying variable types {<code>integers</code>, <code>reals</code> (floating-point decimals), <code>characters</code>, and <code>booleans</code>}, though they can also be implicitly inferred Each underlying primitive can be a <code>scalar</code>, <code>vector</code>, or <code>matrix</code>, and can be declared <code>const</code>. It also includes <code>tuples</code>, which are ordered (and optionally-named) collections of any number of arbitrary variable types.</p>
-                    <p>Gazprea has all the same basic element-wise binary/unary operations between variables, as well as standard conditional/loop control flow statements and I/O functions.  Gazprea has some composite operations that, when compiled, allow some impressive speed boosts. These composite operations include the <code>generator</code> and the <code>filter</code> expressions. which form <code>vectors</code>/<code>matrices</code>, and <code>filters</code> (respectively).</p>
-                    
+                    <h3>Part 1</h3>
+
+					<p>All-Star had an issue: Shopify was depreciating their old style of checkout customizations. They have a policy of not taking payment on something they can't deliver immediately, which they already had a fix, but the new update had broken it. Thus, they had to figure out a new way to block customer payment when products weren't in stock (preferably without revealing their inventory levels to the public/competitors).</p>
+					<p>The fix is a custom app, that runs a <a href="https://shopify.dev/docs/apps/build/checkout" target="_blank">checkout customization</a> in the background every time a checkout is initiated. In short, it sends the checkout details to an external app, which checks the stock status of each item in their relevant location. It then sends back the in-stock details, and blocks payment if any items aren't fulfillable.</p>
+
                     <div class="row col-md-12">
-                        <a href="/images/gazprea-example.png"><img style="width:100%;" src="/images/gazprea-example.png"/></a>
-                        <span>An example Gazprea program, which utilizes implicit variable types, basic generators, control flow, and output</span>
+                        <a href="/images/capp-checkout.png"><img style="width:100%;" src="/images/capp-checkout.png"/></a>
+                        <span>The checkout customization in action</span>
                         <p/>
-                    </div> -->
+                    </div>
 
                 </div>
             </div>
@@ -156,37 +156,63 @@
 			<div class="row">
 				<div class="col-md-12">
 
-                    <h3>Project</h3>
+                    <h3>Part 2</h3>
+
+					<p>If we had capabilities of stopping payment on non-fulfillable orders, we were now accumulating a mix of fulfillable and non-fulfillable orders. Furthermore, once stock was recieved, it was difficult to determine which orders needed payment collected (and were now fulfillable).</p>
+					<p>To remedy this, I made a standalone app that would iterate through all open orders, checking their fulfillment status (regarding having enough stock). This includes checking to ensure that stock being used for an older order doesn't get "re-used" for a newer order.</p>
+					
+					<p>This app can be used to generate a list of fulfillable orders, which lets users both:
+					<ol>
+						<li>Determine which orders need payment collected (fulfillable and not yet paid)</li>
+						<li>Find the orders that need shipping/pickup (fulfillable and paid)</li>
+					</ol>
+					</p>
+
+                    <p><em>Unfortunately, this aspect works too close to customer/identifying information to share public screenshots.</em></p>
+
+                </div>
+            </div>
+		</div>
+
+		<div class="container animate-box">
+			<div class="row">
+				<div class="col-md-12">
+
+                    <h3>Part 3</h3>
 					<p>TODO</p>
                     <!-- <p>As the final assignment for the  CMPUT415 Course, we were tasked with creating a compiler for the Gazprea programming language. <em>Note that this was a group assignment, so all aspects of this project were created collaboratively in groups of four.</em></p>
                     <p>Our group's compiler is built in C++, using <a href="https://www.antlr.org/" target="_blank">ANTLR4</a> to generate an LL(*) parser. Once the language is parsed, an Abstract Syntax Tree is built (that could be fully visualized with <a href="https://graphviz.org/" target="_blank">Graphviz</a> <em>(see below)</em> anytime throughout the compilation pipeline), and used <a href="https://mlir.llvm.org/docs/Interfaces/" target="_blank">MLIR's C++ Interface/API</a> to output <a href="https://mlir.llvm.org/docs/BytecodeFormat/" target="_blank">MLIR Bytecode</a>. This was then lowered to a raw <a href="https://mlir.llvm.org/docs/TargetLLVMIR/" target="_blank">LLVM Intermediate Representation (IR)</a>, which was them compiled to object files with <code>llc</code> (the <a href="https://llvm.org/docs/CommandGuide/llc.html" target="_blank"><strong>LL</strong>VM <strong>C</strong>ompiler</a>).</p>
-                    <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p>
+                    <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p> -->
+
                     
                     <div class="row col-md-12">
-                        <a href="/images/gazprea-example-graphviz.png"><img style="width:100%;" src="/images/gazprea-example-graphviz.png"/></a>
-                        <span>Example Graphviz output for example program above<br><em>(Click to view Full Quality)</em></span>
+                        <a href="/images/capp-customs-default.png"><img style="width:100%;" src="/images/capp-customs-default.png"/></a>
+                        <span>List of all outstanding custom products</span>
                         <p/>
-                    </div>-->
-
-                </div>
-            </div>
-		</div>
-
-		<div class="container animate-box">
-			<div class="row">
-				<div class="col-md-12">
-
-                    <h3>Features</h3>
-					<p>TODO</p>
-                    <!-- <p>As the final assignment for the  CMPUT415 Course, we were tasked with creating a compiler for the Gazprea programming language. <em>Note that this was a group assignment, so all aspects of this project were created collaboratively in groups of four.</em></p>
-                    <p>Our group's compiler is built in C++, using <a href="https://www.antlr.org/" target="_blank">ANTLR4</a> to generate an LL(*) parser. Once the language is parsed, an Abstract Syntax Tree is built (that could be fully visualized with <a href="https://graphviz.org/" target="_blank">Graphviz</a> <em>(see below)</em> anytime throughout the compilation pipeline), and used <a href="https://mlir.llvm.org/docs/Interfaces/" target="_blank">MLIR's C++ Interface/API</a> to output <a href="https://mlir.llvm.org/docs/BytecodeFormat/" target="_blank">MLIR Bytecode</a>. This was then lowered to a raw <a href="https://mlir.llvm.org/docs/TargetLLVMIR/" target="_blank">LLVM Intermediate Representation (IR)</a>, which was them compiled to object files with <code>llc</code> (the <a href="https://llvm.org/docs/CommandGuide/llc.html" target="_blank"><strong>LL</strong>VM <strong>C</strong>ompiler</a>).</p>
-                    <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p>
-                    
-                    <div class="row col-md-12">
-                        <a href="/images/gazprea-example-graphviz.png"><img style="width:100%;" src="/images/gazprea-example-graphviz.png"/></a>
-                        <span>Example Graphviz output for example program above<br><em>(Click to view Full Quality)</em></span>
+                    </div>
+					
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="/images/capp-needed-default.png"><img style="width:100%;" src="/images/capp-needed-default.png"/></a>
+                            <p class="col-md-12">Description for 1st photo</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/images/capp-needed-sort-quantity.png"><img style="width:100%;" src="/images/capp-needed-sort-quantity.png"/></a>
+                            <p class="col-md-12">Description for 2nd photo</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/images/capp-incoming-default.png"><img style="width:100%;" src="/images/capp-incoming-default.png"/></a>
+                            <p class="col-md-12">Description for 3rd photo</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/images/capp-incoming-sort-quantity.png"><img style="width:100%;" src="/images/capp-incoming-sort-quantity.png"/></a>
+                            <p class="col-md-12">Description for 4th photo</p>
+                        </div>
+                    </div>
+					<div class="row col-md-12">
+                        <span><em>(Click Any of the Above to view Full Quality)</em></span>
                         <p/>
-                    </div>-->
+                    </div>
 
                 </div>
             </div>
@@ -197,7 +223,7 @@
 				<div class="col-md-12">
 
                     <h3>Lessons Learned</h3>
-					<p>TODO</p>
+					<p>This was my first "real" computing science work experience, as well as my first "real" experience with full-stack development. Being used to only creating smaller scripts/programs, doing the work from start (cutom database), through implementation (custom JS app), to end (hosting on Heroku) was a larger task than expected.</p>
                     <!-- <ul>
                         <li>When projects involve others, exponentailly more work must be put into proper planning and organization</li>
                         <ul>
