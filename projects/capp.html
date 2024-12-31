@@ -159,7 +159,7 @@
                     <h3>Part 2</h3>
 
 					<p>If we had capabilities of stopping payment on non-fulfillable orders, we were now accumulating a mix of fulfillable and non-fulfillable orders. Furthermore, once stock was recieved, it was difficult to determine which orders needed payment collected (and were now fulfillable).</p>
-					<p>To remedy this, I made a standalone app that would iterate through all open orders, checking their fulfillment status (regarding having enough stock). This includes checking to ensure that stock being used for an older order doesn't get "re-used" for a newer order.</p>
+					<p>To remedy this, I made a standalone app that would iterate through all open orders, checking their fulfillment status (by checking to see if have enough stock) through the <a href="https://shopify.dev/docs/api/admin-graphql" target="_blank">Shopify GraphQL API</a>. This includes checking to ensure that stock being used for an older order doesn't get "re-used" for a newer order.</p>
 					
 					<p>This app can be used to generate a list of fulfillable orders, which lets users both:
 					<ol>
@@ -167,6 +167,7 @@
 						<li>Find the orders that need shipping/pickup (fulfillable and paid)</li>
 					</ol>
 					</p>
+                    <p>This was useful, but didn't really do everything we hoped it would regarding fulfillment streamlining.</p>
 
                     <p><em>Unfortunately, this aspect works too close to customer/identifying information to share public screenshots.</em></p>
 
@@ -179,40 +180,41 @@
 				<div class="col-md-12">
 
                     <h3>Part 3</h3>
-					<p>TODO</p>
-                    <!-- <p>As the final assignment for the  CMPUT415 Course, we were tasked with creating a compiler for the Gazprea programming language. <em>Note that this was a group assignment, so all aspects of this project were created collaboratively in groups of four.</em></p>
-                    <p>Our group's compiler is built in C++, using <a href="https://www.antlr.org/" target="_blank">ANTLR4</a> to generate an LL(*) parser. Once the language is parsed, an Abstract Syntax Tree is built (that could be fully visualized with <a href="https://graphviz.org/" target="_blank">Graphviz</a> <em>(see below)</em> anytime throughout the compilation pipeline), and used <a href="https://mlir.llvm.org/docs/Interfaces/" target="_blank">MLIR's C++ Interface/API</a> to output <a href="https://mlir.llvm.org/docs/BytecodeFormat/" target="_blank">MLIR Bytecode</a>. This was then lowered to a raw <a href="https://mlir.llvm.org/docs/TargetLLVMIR/" target="_blank">LLVM Intermediate Representation (IR)</a>, which was them compiled to object files with <code>llc</code> (the <a href="https://llvm.org/docs/CommandGuide/llc.html" target="_blank"><strong>LL</strong>VM <strong>C</strong>ompiler</a>).</p>
-                    <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p> -->
 
-                    
+					<p>At this point, we know which orders are fulfillable, and what items are "missing" from stock, that are needed to fulfill all of the orders. We also can keep track of any custom items on open orders, to ensure they're being properly addressed.</p>
                     <div class="row col-md-12">
-                        <a href="/images/capp-customs-default.png"><img style="width:100%;" src="/images/capp-customs-default.png"/></a>
-                        <span>List of all outstanding custom products</span>
+						<a href="/images/capp-customs-default.png"><img style="width:100%;" src="/images/capp-customs-default.png"/></a>
+                        <span>A quick look at all custom products on outstanding orders</span>
                         <p/>
                     </div>
+
+					<p>Now that we have looked at all open orders & tracked what products we are short, we can list out all of the "need to order" parts/items to help with maintaining stock levels. This only goes so far however, as incoming products may be on their way, just not in our hands (revieved) yet. Thus, I was able to tap into the <a href="https://help.shopify.com/en/manual/sell-in-person/shopify-pos/inventory-management/stocky" target="_blank">Stocky</a> app to see all open POs, and track the incoming products.</p>
 					
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a href="/images/capp-needed-default.png"><img style="width:100%;" src="/images/capp-needed-default.png"/></a>
-                            <p class="col-md-12">Description for 1st photo</p>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="/images/capp-needed-sort-quantity.png"><img style="width:100%;" src="/images/capp-needed-sort-quantity.png"/></a>
-                            <p class="col-md-12">Description for 2nd photo</p>
-                        </div>
-                        <div class="col-md-3">
+					<div class="row">
+                        <div class="col-md-6">
                             <a href="/images/capp-incoming-default.png"><img style="width:100%;" src="/images/capp-incoming-default.png"/></a>
-                            <p class="col-md-12">Description for 3rd photo</p>
+                            <p>A table displaying all the currently-incoming products</p>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <a href="/images/capp-incoming-sort-quantity.png"><img style="width:100%;" src="/images/capp-incoming-sort-quantity.png"/></a>
-                            <p class="col-md-12">Description for 4th photo</p>
+                            <p>We can also sort this table, allowing us to find the largest quantites of incoming products</p>
                         </div>
                     </div>
-					<div class="row col-md-12">
-                        <span><em>(Click Any of the Above to view Full Quality)</em></span>
-                        <p/>
-                    </div>
+
+					<p>Now that I had all the incoming product details, as well as a list of all the products "needed" to fulfill all the open orders, I was able to cross-reference them to finally get a list of "needed products" (products on open orders, but not incoming). This can be used for ordering purposes, as well as to track current standing.</p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/images/capp-needed-default.png"><img style="width:100%;" src="/images/capp-needed-default.png"/></a>
+                            <p>A table displaying which products need to be aquired to fulfill all open orders</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/images/capp-needed-sort-quantity.png"><img style="width:100%;" src="/images/capp-needed-sort-quantity.png"/></a>
+                            <p>We can sort the "needed" table by any displayed value, e.g. to see the "most out of stock" products</p>
+                        </div>
+					</div>
+
+					<p>Finally, all of these functionalities were built into a single app (native <a href="https://nodejs.org/en" target="_blank">JavaScript / Node.js</a> backend) with a unified web interface, using the <a href="https://remix.run/" target="_blank">Remix library</a> (built on top of <a href="https://react.dev/" target="_blank">React</a>), and using <a href="https://polaris.shopify.com/" target="_blank">Shopify's Polaris</a> design system for the UI. A Node server was then hosted on a <a href="https://www.heroku.com/dynos" target="_blank">Heroku Dyno</a>, ensuring a strong and consistent base.</p>
 
                 </div>
             </div>
@@ -223,30 +225,20 @@
 				<div class="col-md-12">
 
                     <h3>Lessons Learned</h3>
-					<p>This was my first "real" computing science work experience, as well as my first "real" experience with full-stack development. Being used to only creating smaller scripts/programs, doing the work from start (cutom database), through implementation (custom JS app), to end (hosting on Heroku) was a larger task than expected.</p>
-                    <!-- <ul>
-                        <li>When projects involve others, exponentailly more work must be put into proper planning and organization</li>
-                        <ul>
-                            <li>Planning ahead is almost always easier than trying to reconcile issues after the fact</li>
-                            <li><em>Fully</em> utilizing a proper issue tracker (e.g. GitHub Issues) massively improves speed/ease of communication</li>
-                            <li>Typically, a voice call (as opposed to text-based messaging) is easier, quicker, and more productive</li>
-                        </ul>
-                        <li>C++ has massively powerful OOP capabilities, but must be managed carefully</li>
-                        <ul>
-                            <li>Regarding file/directory organization, logical organization structures & file naming goes a long way</li>
-                            <li>When builfing class structures, having a carefully planned class hierarchy is a must</li>
-                        </ul>
-                        <li>Making a good/complete compiler is hard</li>
-                        <ul>
-                            <li>Figuring out the 'normal case' is easy, catching errors & handling edge/corner cases is hard</li>
-                        </ul>                        
-                        <li>Unit testing (and test-driven development (TDD)) is worth it, especially with good CI/CD capabilities</li>
-                        <ul>
-                            <li>We were able to have a dedicated CI/CD server, which always ensured changes were not counter-productive</li>
-                            <li>Having pre-written tests to "work towards" can be useful for knowing how changes need to be made</li>
-                        </ul>
-
-                    </ul> -->
+					<p>This was my first "real" computing science work experience, as well as my first experience with full-stack development. Being used to only creating smaller scripts/programs, doing the work from start (custom JS backend), through implementation (building a useful UI), to end (hosting on Heroku) was a larger task than expected.</p>
+					<p>Working with larger amounts of data forced me to consider how to efficiently interact with different APIs, and how to optimize their calls to ensure minimum processing time. This was also my first time using JavaScript/React, which was a great experience in learning how to work with such widespread systems.</p>
+                    
+					<h4>Some Other (smaller) Lessons:</h4>
+                    <ul>
+                        <li>Properly using git branches to separate feature development (even with only a single developer) is massively useful</li>
+                        <li>When working with a customization that changes a customer's checkout experience, edge-case handling is critical, and requires extensive testing to ensure everything works properly and as expected</li>
+                        <li>Working with third-party APIs can be difficult, especially when working with a somewhat-proprietary (new) query language (<a href="https://shopify.dev/docs/api/admin-graphql" target="_blank">GraphQL</a>)</li>
+                        <li>Building a UI is a real constant challenge of balancing clarity, density, and customizability</li>
+						<ul>
+							<li>Especially as someone who prefers backend work, and bulleted lists of information</li>
+						</ul>
+                        <li>Self-hosting is appealing, but once set up with a third-party provider, the peace ofo mind is worth the cost (at this scale at least)</li>
+                    </ul>
 
                 </div>
             </div>
