@@ -140,10 +140,12 @@
                     <p>Gazprea has all the same basic element-wise binary/unary operations between variables, as well as standard conditional/loop control flow statements and I/O functions.  Gazprea has some composite operations that, when compiled, allow some impressive speed boosts. These composite operations include the <code>generator</code> and the <code>filter</code> expressions. which form <code>vectors</code>/<code>matrices</code>, and <code>filters</code> (respectively).</p>
                     <!-- <p><code>Generators</code> iterate through <code>vectors</code> or <code>matrices</code>, computing resultant expressions by applying arbitrary operations to each piecewise element. <code>Filters</code> iterate through vectors, and sort each element into arbitrarily many defined collections (including a default 'not used' colection), forming a tuple of vectors as a result.</p> -->
                     
-                    <div class="row col-md-12">
-                        <a href="/images/gazprea-example.png"><img style="width:100%;" src="/images/gazprea-example.png"/></a>
-                        <p><em>An example Gazprea program, which utilizes implicit variable types, basic generators, control flow, and output</em></p>
-                        <p/>
+                    <div class="row">
+						<div class="col-md-12">
+							<a href="/images/gazprea-example.png"><img style="width:100%;" src="/images/gazprea-example.png"/></a>
+							<p><em>An example Gazprea program, which utilizes implicit variable types, basic generators, control flow, and output</em></p>
+							<p/>
+						</div>
                     </div>
 
                 </div>
@@ -159,10 +161,12 @@
                     <p>Our group's compiler is built in C++, using <a href="https://www.antlr.org/" target="_blank">ANTLR4</a> to generate an LL(*) parser. Once the language is parsed, an Abstract Syntax Tree is built (that could be fully visualized with <a href="https://graphviz.org/" target="_blank">Graphviz</a> <em>(see below)</em> anytime throughout the compilation pipeline), and used <a href="https://mlir.llvm.org/docs/Interfaces/" target="_blank">MLIR's C++ Interface/API</a> to output <a href="https://mlir.llvm.org/docs/BytecodeFormat/" target="_blank">MLIR Bytecode</a>. This was then lowered to a raw <a href="https://mlir.llvm.org/docs/TargetLLVMIR/" target="_blank">LLVM Intermediate Representation (IR)</a>, which was them compiled to object files with <code>llc</code> (the <a href="https://llvm.org/docs/CommandGuide/llc.html" target="_blank"><strong>LL</strong>VM <strong>C</strong>ompiler</a>).</p>
                     <p><em>Unfortunately, this project was an academic assignment, so I cannot disclose many more details about the specifics of the implementation.</em></p>
                     
-                    <div class="row col-md-12">
-                        <a href="/images/gazprea-example-graphviz.png"><img style="width:100%;" src="/images/gazprea-example-graphviz.png"/></a>
-                        <p><em>Example Graphviz output for example program above</em></p>
-                        <p/>
+                    <div class="row">
+						<div class="col-md-12">
+							<a href="/images/gazprea-example-graphviz.png"><img style="width:100%;" src="/images/gazprea-example-graphviz.png"/></a>
+							<p><em>Example Graphviz output for example program above</em></p>
+							<p/>
+						</div>
                     </div>                    
 
                 </div>

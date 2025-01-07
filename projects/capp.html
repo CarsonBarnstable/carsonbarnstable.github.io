@@ -142,10 +142,12 @@
 					<p>All-Star had an issue: Shopify was depreciating their old style of checkout customizations. They have a policy of not taking payment on something they can't deliver immediately, which they already had a fix, but the new update had broken it. Thus, they had to figure out a new way to block customer payment when products weren't in stock (preferably without revealing their inventory levels to the public/competitors).</p>
 					<p>The fix is a custom app, that runs a <a href="https://shopify.dev/docs/apps/build/checkout" target="_blank">checkout customization</a> in the background every time a checkout is initiated. In short, it sends the checkout details to an external app, which checks the stock status of each item in their relevant location. It then sends back the in-stock details, and blocks payment if any items aren't fulfillable.</p>
 
-                    <div class="row col-md-12">
-                        <a href="/images/capp-checkout.png"><img style="width:100%;" src="/images/capp-checkout.png"/></a>
-                        <p><em>The checkout customization in action</em></p>
-                        <p/>
+                    <div class="row">
+						<div class="row col-md-12">
+							<a href="/images/capp-checkout.png"><img style="width:100%;" src="/images/capp-checkout.png"/></a>
+							<p><em>The checkout customization in action</em></p>
+							<p/>
+						</div>
                     </div>
 
                 </div>
@@ -182,10 +184,12 @@
                     <h3>Part 3</h3>
 
 					<p>At this point, we know which orders are fulfillable, and what items are "missing" from stock, that are needed to fulfill all of the orders. We also can keep track of any custom items on open orders, to ensure they're being properly addressed.</p>
-                    <div class="row col-md-12">
-						<a href="/images/capp-customs-default.png"><img style="width:100%;" src="/images/capp-customs-default.png"/></a>
-                        <p><em>A quick look at all custom products on outstanding orders</em></p>
-                        <p/>
+                    <div class="row">
+						<div class="col-md-12">
+							<a href="/images/capp-customs-default.png"><img style="width:100%;" src="/images/capp-customs-default.png"/></a>
+							<p><em>A quick look at all custom products on outstanding orders</em></p>
+							<p/>
+						</div>
                     </div>
 
 					<p>Now that we have looked at all open orders & tracked what products we are short, we can list out all of the "need to order" parts/items to help with maintaining stock levels. This only goes so far however, as incoming products may be on their way, just not in our hands (revieved) yet. Thus, I was able to tap into the <a href="https://help.shopify.com/en/manual/sell-in-person/shopify-pos/inventory-management/stocky" target="_blank">Stocky</a> app to see all open POs, and track the incoming products.</p>
